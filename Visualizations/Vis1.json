@@ -1,24 +1,18 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "data": {
-    "url": "https://raw.githubusercontent.com/vega/vega-datasets/next/data/movies.json"
+    "url": "https://gist.githubusercontent.com/JMarts32/b6d71d8035237df5f65302d4d2be1c84/raw/7446a5129a3036b1869b2cf27cf150d1da683533/movies.json"
   },
-  "height": 500,
-  "width": 700,
-  "transform": [
-    {"filter": "datum['Rotten Tomatoes Rating'] !== null && datum['Major Genre'] !== null"}
-  ],
+  "height": 400,
+  "width": 600,
   "mark": "area",
   "encoding": {
-    "x": {
-      "timeUnit": "year",
-      "field": "Release Date",
-      "axis": {"domain": false, "format": "%Y", "tickSize": 0}
+    "x": {  
+      "field": "year"
     },
     "y": {
-      "aggregate": "average",
-      "type": "quantitative",
-      "field": "Rotten Tomatoes Rating",
+      "aggregate": "count",
+      "field": "Rotten Tomatoes Rating Avg",
       "axis": {"title": "Average Rating", "tickSize": 0},
       "stack": "center"
     },
