@@ -5,4 +5,4 @@ Para poder hacer uso de Vega con VSCode se debe seguir los siguientes pasos:
 * Una vez instalada la extension ctrl + shift + p y escribir Vega: Open Preview to the Side para ver la previsualizacion de la grafica
 
 A tener en cuenta:
-* La extension no actualiza automaticamente la grafica, por lo que cada vez que se haga un cambio dar en el boton de actualizar de la grafica se parece al de :recycle: pero en azul en la parte
+* La extension no actualiza automaticamente la grafica, por lo que cada vez que se haga un cambio dar en el boton de actualizar de la grafica se parece al de :recycle: pero en azul en la parte superior izquierda de la grafica
