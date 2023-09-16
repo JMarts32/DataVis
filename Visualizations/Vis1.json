@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "data": {
-    "url": "https://gist.githubusercontent.com/JMarts32/b6d71d8035237df5f65302d4d2be1c84/raw/7446a5129a3036b1869b2cf27cf150d1da683533/movies.json"
+    "url": "https://gist.githubusercontent.com/JMarts32/b6d71d8035237df5f65302d4d2be1c84/raw/c3dfb495158f42c8c3b7a5afb40f0bedb27158c0/movies.json"
   },
   "height": 400,
   "width": 600,
