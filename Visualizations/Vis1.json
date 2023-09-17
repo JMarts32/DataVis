@@ -22,7 +22,7 @@
             "aggregate": "mean",
             "field": "Rotten Tomatoes Rating",
             "type": "quantitative",
-            "axis": null
+            "axis": null,
             "stack": "center"
           },
           "color": {"field": "Major Genre", "type": "nominal", "scale": {"scheme": "category20"}}
