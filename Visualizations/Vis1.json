@@ -1,21 +1,32 @@
 {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {
-    "url": "https://gist.githubusercontent.com/JMarts32/b6d71d8035237df5f65302d4d2be1c84/raw/c3dfb495158f42c8c3b7a5afb40f0bedb27158c0/movies.json"
-  },
-  "height": 400,
-  "width": 600,
-  "mark": "area",
-  "encoding": {
-    "x": {  
-      "field": "year"
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+      "url": "https://gist.githubusercontent.com/JMarts32/b6d71d8035237df5f65302d4d2be1c84/raw/ad5a489007c0a1e37a79c96adf21279ea4700d22/movies.json"
     },
-    "y": {
-      "aggregate": "count",
-      "field": "Rotten Tomatoes Rating Avg",
-      "axis": {"title": "Average Rating", "tickSize": 0},
-      "stack": "center"
-    },
-    "color": {"field": "Major Genre", "scale": {"scheme": "category20b"}}
+    "height": 600,
+    "width": 800,
+    "layer": [
+      {
+        "mark": {
+            "type": "area",
+            "interpolate": "monotone"
+        },
+        "encoding": {
+          "x": {
+            "field": "decade",
+            "axis": {
+              "title": "Decades"
+            }
+          },
+          "y": {
+            "aggregate": "mean",
+            "field": "Rotten Tomatoes Rating",
+            "type": "quantitative",
+            "axis": null
+            "stack": "center"
+          },
+          "color": {"field": "Major Genre", "type": "nominal", "scale": {"scheme": "category20"}}
+        }
+      }
+    ]
   }
-}
