@@ -1,74 +1,75 @@
 {
-    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "data": {
-      "url": "https://gist.githubusercontent.com/JMarts32/b6d71d8035237df5f65302d4d2be1c84/raw/ad5a489007c0a1e37a79c96adf21279ea4700d22/movies.json"
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://gist.githubusercontent.com/JMarts32/b6d71d8035237df5f65302d4d2be1c84/raw/ad5a489007c0a1e37a79c96adf21279ea4700d22/movies.json"
+  },
+  "params": [
+    {
+      "name": "genreFilter",
+      "value": null,
+      "bind": {
+        "input": "select",
+        "options": ["Drama", "Musical", "Comedy", "Action", "Romantic Comedy", "Western", "Adventure", "Thriller/Suspense", "Documentary", "Black Comedy", "Horror", "Concert/Performance"],
+        "name": "Select a Genre"
+      }
+    }
+  ],
+  "height": 600,
+  "width": 900,
+  "padding": {"left": 50, "right": 20, "top": 20, "bottom": 200},
+  "transform": [
+    {
+      "filter": {
+        "field": "Major Genre",
+        "equal": {"expr": "genreFilter"}
+      }
     },
-    "params": [
-      {
-        "name": "genreFilter",
-        "value": null,
-        "bind": {
-          "input": "select",
-          "options": ["Drama", "Musical", "Comedy", "Action", "Romantic Comedy", "Western", "Adventure", "Thriller/Suspense", "Documentary", "Black Comedy", "Horror", "Concert/Performance"],
-          "name": "Select a Genre"
-        }
+    {
+      "window": [{"op": "rank", "as": "rank"}],
+      "sort": [{"field": "Rotten Tomatoes Rating", "order": "descending"}]
+    },
+    {
+      "filter": {"field": "rank", "lte": 10}
+    }
+  ],
+  "layer": [
+    {
+      "mark": "bar",
+      "encoding": {
+        "x": {
+          "field": "Title",
+          "type": "nominal",
+          "title": "Comparative Top 10 Movies (IMDb vs Rotten Tomatoes)"
+        },
+        "y": {
+          "field": "Rotten Tomatoes Rating",
+          "type": "quantitative",
+          "aggregate": "mean",
+          "title": "Rotten Tomatoes Rating"
+        },
+        "color": {"value": "lightblue"},
+        "opacity": {"value": 0.7},
+        "size": {"value": 55}
       }
-    ],
-    "height": 600,
-    "width": 900,
-    "padding": {"left": 50, "right": 20, "top": 20, "bottom": 200},
-    "transform": [
-      {
-        "filter": {
-          "field": "Major Genre",
-          "equal": {"expr": "genreFilter"}
-        }
-      },
-      {
-        "window": [{"op": "rank", "as": "rank"}],
-        "sort": [{"field": "Rotten Tomatoes Rating", "order": "descending"}]
-      },
-      {
-        "filter": {"field": "rank", "lte": 10}
+    },
+    {
+      "mark": "bar",
+      "encoding": {
+        "x": {
+          "field": "Title",
+          "type": "nominal"
+        },
+        "y": {
+          "field": "IMDB Rating",
+          "type": "quantitative",
+          "aggregate": "mean",
+          "title": "IMDb Rating"
+        },
+        "color": {"value": "lightgreen"},
+        "opacity": {"value": 0.7},
+        "size": {"value": 35}
       }
-    ],
-    "layer": [
-      {
-        "mark": "bar",
-        "encoding": {
-          "x": {
-            "field": "Title",
-            "type": "nominal",
-            "title": "Comparative Top 10 Movies (IMDb vs Rotten Tomatoes)"
-          },
-          "y": {
-            "field": "Rotten Tomatoes Rating",
-            "type": "quantitative",
-            "aggregate": "mean",
-            "title": "Mean Rotten Tomatoes Rating"
-          },
-          "color": {"value": "lightblue"},
-          "opacity": {"value": 0.7}
-        }
-      },
-      {
-        "mark": "bar",
-        "encoding": {
-          "x": {
-            "field": "Title",
-            "type": "nominal",
-            "title": "Comparative Top 10 Movies (IMDb vs Rotten Tomatoes)"
-          },
-          "y": {
-            "field": "IMDB Rating",
-            "type": "quantitative",
-            "aggregate": "mean",
-            "title": "Mean IMDb Rating"
-          },
-          "color": {"value": "lightgreen"},
-          "opacity": {"value": 0.7}
-        }
-      }
-    ],
-    "resolve": {"scale": {"y": "independent"}}
-  }
+    }
+  ],
+  "resolve": {"scale": {"y": "independent"}}
+}
