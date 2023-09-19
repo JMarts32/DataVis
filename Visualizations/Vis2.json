@@ -1,0 +1,13 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+      "url": "https://gist.githubusercontent.com/JMarts32/b6d71d8035237df5f65302d4d2be1c84/raw/ad5a489007c0a1e37a79c96adf21279ea4700d22/movies.json"
+    },
+    "height": 100,
+    "width": 200,
+    "mark": "line",
+    "encoding": {
+      "x": {"field": "year", "type": "temporal"},
+      "y": {"field": "imdb_rating", "type": "quantitative"}
+    }
+  }

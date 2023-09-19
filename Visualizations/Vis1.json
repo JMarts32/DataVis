@@ -5,28 +5,24 @@
     },
     "height": 600,
     "width": 800,
-    "layer": [
-      {
-        "mark": {
-            "type": "area",
-            "interpolate": "monotone"
-        },
-        "encoding": {
-          "x": {
-            "field": "decade",
-            "axis": {
-              "title": "Decades"
-            }
-          },
-          "y": {
-            "aggregate": "mean",
-            "field": "Rotten Tomatoes Rating",
-            "type": "quantitative",
-            "axis": null,
-            "stack": "center"
-          },
-          "color": {"field": "Major Genre", "type": "nominal", "scale": {"scheme": "category20"}}
+    "mark": {
+        "type": "area",
+        "interpolate": "monotone"
+    },
+    "encoding": {
+      "x": {
+        "field": "decade",
+        "axis": {
+          "title": "Decades"
         }
-      }
-    ]
+      },
+      "y": {
+        "aggregate": "mean",
+        "field": "Rotten Tomatoes Rating",
+        "type": "quantitative",
+        "axis": null,
+        "stack": "center"
+      },
+      "color": {"field": "Major Genre", "type": "nominal", "scale": {"scheme": "category20"}}
+    }
   }
