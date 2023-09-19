@@ -15,15 +15,6 @@
         "options": ["Drama", "Musical", "Comedy", "Action", "Romantic Comedy", "Western", "Adventure", "Thriller/Suspense", "Documentary", "Black Comedy", "Horror", "Concert/Performance"],
         "name": "Select a Genre "
       }
-    },
-    {
-      "name": "ratingFilter",
-      "value": "Rotten Tomatoes Rating",
-      "bind": {
-        "input": "select",
-        "options": ["Rotten Tomatoes Rating", "IMDB Rating"],
-        "name": "Select a Genre "
-      }
     }
   ],
   "transform": [
@@ -35,7 +26,7 @@
     },
     {
       "window": [{"op": "rank", "as": "rank"}],
-      "sort": [{"field": "IMDB Rating", "order": "descending"}]
+      "sort": [{"field": "Rotten Tomatoes Rating", "order": "descending"}]
     },
     {
       "filter": {"field": "rank", "lte": 10}
@@ -86,8 +77,9 @@
           "type": "quantitative",
           "title": "Budget"
         },
+        "tooltip": {"field": "Production Budget", "type": "quantitative"},
         "color": {"value": "#f50505"},
-        "size": {"value": 40},
+        "size": {"value": 60},
         "opacity": {"value": 1}
       }
     },
@@ -101,8 +93,9 @@
           "field": "Worldwide Gross",
           "type": "quantitative"
         },
+        "tooltip": {"field": "Worldwide Gross", "type": "quantitative"},
         "color": {"value": "#05f505"},
-        "size": {"value": 40},
+        "size": {"value": 60},
         "opacity": {"value": 1}
       }
     }
