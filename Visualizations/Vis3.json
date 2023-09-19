@@ -32,7 +32,8 @@
     {
       "joinaggregate": [
         {"op": "min", "field": "value", "as": "min"},
-        {"op": "max", "field": "value", "as": "max"}
+        {"op": "max", "field": "value", "as": "max"},
+        {"op": "mean", "field": "value", "as": "mean"}
       ],
       "groupby": ["key"]
     },
@@ -83,26 +84,12 @@
     {
       "encoding": {
         "x": {"type": "nominal", "field": "key"},
-        "y": {"value": 150}
+        "y": {"value": 280}
       },
       "layer": [
         {
           "mark": {"type": "text", "style": "label"},
-          "encoding": {"text": {"aggregate": "min", "field": "min"}}
-        },
-        {"mark": {"type": "tick", "style": "tick", "size": 8, "color": "#ccc"}
-        }
-      ]
-    },
-    {
-      "encoding": {
-        "x": {"type": "nominal", "field": "key"},
-        "y": {"value": 300}
-      },
-      "layer": [
-        {
-          "mark": {"type": "text", "style": "label"},
-          "encoding": {"text": {"aggregate": "min", "field": "min"}}
+          "encoding": {"text": {"aggregate": "mean", "field": "mean"}}
         },
         {"mark": {"type": "tick", "style": "tick", "size": 8, "color": "#ccc"}
         }
