@@ -1,0 +1,118 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Parallel Coordinate Plot for Movie Data",
+  "data": {
+    "url": "https://gist.githubusercontent.com/JMarts32/b6d71d8035237df5f65302d4d2be1c84/raw/ad5a489007c0a1e37a79c96adf21279ea4700d22/movies.json"
+  },
+  "params": [
+    {
+      "name": "genreFilter",
+      "value": null,
+      "bind": {
+        "input": "select",
+        "options": ["Drama", "Musical", "Comedy", "Action", "Romantic Comedy", "Western", "Adventure", "Thriller/Suspense", "Documentary", "Black Comedy", "Horror", "Concert/Performance"],
+        "name": "Select a Genre"
+      }
+    }
+  ],
+  "width": 600,
+  "height": 300,
+  "padding": {"left": 50, "right": 200, "top": 20, "bottom": 50},
+  "transform": [
+    {
+      "filter": {
+        "field": "Major Genre",
+        "equal": {"expr": "genreFilter"}
+      }
+    },
+    {
+      "fold": ["US Gross", "Worldwide Gross", "Production Budget", "Rotten Tomatoes Rating", "IMDB Rating"],
+      "as": ["key", "value"]
+    },
+    {
+      "joinaggregate": [
+        {"op": "min", "field": "value", "as": "min"},
+        {"op": "max", "field": "value", "as": "max"}
+      ],
+      "groupby": ["key"]
+    },
+    {
+      "calculate": "(datum.value - datum.min) / (datum.max - datum.min)",
+      "as": "norm_val"
+    }
+  ],
+  "layer": [
+    {
+      "mark": {"type": "rule", "color": "#ccc"},
+      "encoding": {
+        "detail": {"aggregate": "count"},
+        "x": {"field": "key"}
+      }
+    },
+    {
+      "mark": "line",
+      "encoding": {
+        "color": {"type": "nominal", "field": "Title"},
+        "detail": {"type": "nominal", "field": "index"},
+        "opacity": {"value": 0.3},
+        "x": {"type": "nominal", "field": "key"},
+        "y": {"type": "quantitative", "field": "norm_val", "axis": null},
+        "tooltip": [
+          {"type": "quantitative", "field": "US Gross"},
+          {"type": "quantitative", "field": "Worldwide Gross"},
+          {"type": "quantitative", "field": "Production Budget"},
+          {"type": "quantitative", "field": "Rotten Tomatoes Rating"},
+          {"type": "quantitative", "field": "IMDB Rating"}
+        ]
+      }
+    },
+    {
+      "encoding": {
+        "x": {"type": "nominal", "field": "key"},
+        "y": {"value": 0}
+      },
+      "layer": [
+        {
+          "mark": {"type": "text", "style": "label"},
+          "encoding": {"text": {"aggregate": "max", "field": "max"}}
+        },
+        {"mark": {"type": "tick", "style": "tick", "size": 8, "color": "#ccc"}
+        }
+      ]
+    },
+    {
+      "encoding": {
+        "x": {"type": "nominal", "field": "key"},
+        "y": {"value": 150}
+      },
+      "layer": [
+        {
+          "mark": {"type": "text", "style": "label"},
+          "encoding": {"text": {"aggregate": "min", "field": "min"}}
+        },
+        {"mark": {"type": "tick", "style": "tick", "size": 8, "color": "#ccc"}
+        }
+      ]
+    },
+    {
+      "encoding": {
+        "x": {"type": "nominal", "field": "key"},
+        "y": {"value": 300}
+      },
+      "layer": [
+        {
+          "mark": {"type": "text", "style": "label"},
+          "encoding": {"text": {"aggregate": "min", "field": "min"}}
+        },
+        {"mark": {"type": "tick", "style": "tick", "size": 8, "color": "#ccc"}
+        }
+      ]
+    }
+  ],
+  "config": {
+    "axisX": {"domain": false, "labelAngle": 0, "tickColor": "#ccc", "title": null},
+    "view": {"stroke": null},
+    "style": {"label": {"baseline": "middle", "align": "right", "dx": -5}, "tick": {"orient": "horizontal"}},
+    "legend": {"disable": true}
+  }
+}
