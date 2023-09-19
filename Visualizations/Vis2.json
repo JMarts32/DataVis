@@ -5,9 +5,68 @@
     },
     "height": 100,
     "width": 200,
-    "mark": "line",
-    "encoding": {
-      "x": {"field": "year", "type": "temporal"},
-      "y": {"field": "imdb_rating", "type": "quantitative"}
+    "params": [
+        {
+          "name": "genreFilter",
+          "value": null,
+          "bind": {
+            "input": "select",
+            "options": ["Drama", "Musical", "Comedy", "Action", "Romantic Comedy", "Western", "Adventure", "Thriller/Suspense", "Documentary", "Black Comedy", "Horror", "Concert/Performance"],
+            "name": "Select a Genre"
+          }
+        }
+      ],
+    "transform": [
+    {
+        "filter": {
+        "field": "Major Genre",
+        "equal": {"expr": "genreFilter"}
+        }
+    },
+    {
+        "window": [{"op": "rank", "as": "rank"}],
+        "sort": [{"field": "Rotten Tomatoes Rating", "order": "descending"}]
+    },
+    {
+        "filter": {"field": "rank", "lte": 10}
     }
+    ],
+    "encoding": {
+        "x": {
+            "field": "worldwide_gross",
+            "type": "quantitative",
+            "axis": {"title": "Income"}
+        },
+        "y": {
+            "field": "Title",
+            "type": "nominal",
+            "axis": {"title": "Movies"}
+        }
+    },
+    "layer": [
+        {
+          "mark": "line",
+          "encoding": {
+            "detail": {
+              "field": "Title",
+              "type": "nominal"
+            },
+            "color": {"value": "#db646f"}
+          }
+        },
+        {
+          "mark": {
+            "type": "point",
+            "filled": true
+          },
+          "encoding": {
+            "color": {
+              "field": "Production budget",
+              "type": "quantitative",
+              "title": "Production Budget"
+            },
+            "opacity": {"value": 1}
+          }
+        }
+    ]
   }
