@@ -1,72 +1,80 @@
 {
-    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "data": {
-      "url": "https://gist.githubusercontent.com/JMarts32/b6d71d8035237df5f65302d4d2be1c84/raw/ad5a489007c0a1e37a79c96adf21279ea4700d22/movies.json"
-    },
-    "height": 100,
-    "width": 200,
-    "params": [
-        {
-          "name": "genreFilter",
-          "value": null,
-          "bind": {
-            "input": "select",
-            "options": ["Drama", "Musical", "Comedy", "Action", "Romantic Comedy", "Western", "Adventure", "Thriller/Suspense", "Documentary", "Black Comedy", "Horror", "Concert/Performance"],
-            "name": "Select a Genre"
-          }
-        }
-      ],
-    "transform": [
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://gist.githubusercontent.com/JMarts32/b6d71d8035237df5f65302d4d2be1c84/raw/ad5a489007c0a1e37a79c96adf21279ea4700d22/movies.json"
+  },
+  "height": 500,
+  "width": 400,
+  "padding": {"left": 80, "right": 20, "top": 20, "bottom": 20},
+  "params": [
     {
-        "filter": {
+      "name": "genreFilter",
+      "value": "Drama",
+      "bind": {
+        "input": "select",
+        "options": ["Drama", "Musical", "Comedy", "Action", "Romantic Comedy", "Western", "Adventure", "Thriller/Suspense", "Documentary", "Black Comedy", "Horror", "Concert/Performance"],
+        "name": "Select a Genre "
+      }
+    }
+  ],
+  "transform": [
+    {
+      "filter": {
         "field": "Major Genre",
         "equal": {"expr": "genreFilter"}
-        }
+      }
     },
     {
-        "window": [{"op": "rank", "as": "rank"}],
-        "sort": [{"field": "Rotten Tomatoes Rating", "order": "descending"}]
+      "window": [{"op": "rank", "as": "rank"}],
+      "sort": [{"field": "Rotten Tomatoes Rating", "order": "descending"}]
     },
     {
-        "filter": {"field": "rank", "lte": 10}
+      "filter": {"field": "rank", "lte": 10}
     }
-    ],
-    "encoding": {
-        "x": {
-            "field": "worldwide_gross",
-            "type": "quantitative",
-            "axis": {"title": "Income"}
-        },
-        "y": {
-            "field": "Title",
-            "type": "nominal",
-            "axis": {"title": "Movies"}
-        }
+  ],
+  "encoding": {
+    "x": {
+      "field": "Worldwide Gross",
+      "type": "quantitative",
+      "axis": {"title": "Income"}
     },
-    "layer": [
-        {
-          "mark": "line",
-          "encoding": {
-            "detail": {
-              "field": "Title",
-              "type": "nominal"
-            },
-            "color": {"value": "#db646f"}
-          }
+    "y": {
+      "field": "Title",
+      "type": "nominal",
+      "title": "Movies"
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "point",
+        "filled": true
+      },
+      "encoding": {
+        "x": {
+          "field": "Production Budget",
+          "type": "quantitative",
+          "title": "Budget"
         },
-        {
-          "mark": {
-            "type": "point",
-            "filled": true
-          },
-          "encoding": {
-            "color": {
-              "field": "Production budget",
-              "type": "quantitative",
-              "title": "Production Budget"
-            },
-            "opacity": {"value": 1}
-          }
-        }
-    ]
-  }
+        "color": {"value": "#05f505"},
+        "size": {"value": 40},
+        "opacity": {"value": 1}
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true
+      },
+      "encoding": {
+        "x": {
+          "field": "Worldwide Gross",
+          "type": "quantitative"
+        },
+        "color": {"value": "#f50505"},
+        "size": {"value": 40},
+        "opacity": {"value": 1}
+      }
+    }
+  ]
+}

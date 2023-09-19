@@ -7,7 +7,7 @@
   "params": [
     {
       "name": "genreFilter",
-      "value": null,
+      "value": "Drama",
       "bind": {
         "input": "select",
         "options": ["Drama", "Musical", "Comedy", "Action", "Romantic Comedy", "Western", "Adventure", "Thriller/Suspense", "Documentary", "Black Comedy", "Horror", "Concert/Performance"],

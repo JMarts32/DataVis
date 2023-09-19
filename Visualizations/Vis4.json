@@ -6,7 +6,7 @@
   "params": [
     {
       "name": "genreFilter",
-      "value": null,
+      "value": "Drama",
       "bind": {
         "input": "select",
         "options": ["Drama", "Musical", "Comedy", "Action", "Romantic Comedy", "Western", "Adventure", "Thriller/Suspense", "Documentary", "Black Comedy", "Horror", "Concert/Performance"],
@@ -47,7 +47,7 @@
           "aggregate": "mean",
           "title": "Rotten Tomatoes Rating"
         },
-        "color": {"value": "lightblue"},
+        "color": {"value": "blue"},
         "opacity": {"value": 0.7},
         "size": {"value": 55}
       }
@@ -65,7 +65,7 @@
           "aggregate": "mean",
           "title": "IMDb Rating"
         },
-        "color": {"value": "lightgreen"},
+        "color": {"value": "green"},
         "opacity": {"value": 0.7},
         "size": {"value": 35}
       }
