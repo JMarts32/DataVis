@@ -14,9 +14,9 @@
       }
     }
   ],
-  "height": 600,
-  "width": 900,
-  "padding": {"left": 50, "right": 20, "top": 20, "bottom": 200},
+  "height": 500,
+  "width": 600,
+  "padding": {"left": 50, "right": 20, "top": 20, "bottom": 100},
   "transform": [
     {
       "filter": {
@@ -47,9 +47,9 @@
           "aggregate": "mean",
           "title": "Rotten Tomatoes Rating"
         },
-        "color": {"value": "blue"},
-        "opacity": {"value": 0.7},
-        "size": {"value": 55}
+        "color": {"value": "#cc1f1f"},
+        "opacity": {"value": 0.8},
+        "size": {"value": 45}
       }
     },
     {
@@ -65,9 +65,9 @@
           "aggregate": "mean",
           "title": "IMDb Rating"
         },
-        "color": {"value": "green"},
-        "opacity": {"value": 0.7},
-        "size": {"value": 35}
+        "color": {"value": "#ccc91f"},
+        "opacity": {"value": 0.8},
+        "size": {"value": 25}
       }
     }
   ],

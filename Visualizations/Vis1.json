@@ -3,8 +3,8 @@
     "data": {
       "url": "https://gist.githubusercontent.com/JMarts32/b6d71d8035237df5f65302d4d2be1c84/raw/ad5a489007c0a1e37a79c96adf21279ea4700d22/movies.json"
     },
-    "height": 600,
-    "width": 800,
+    "height": 500,
+    "width": 600,
     "mark": {
         "type": "area",
         "interpolate": "monotone"

@@ -4,7 +4,7 @@
     "url": "https://gist.githubusercontent.com/JMarts32/b6d71d8035237df5f65302d4d2be1c84/raw/ad5a489007c0a1e37a79c96adf21279ea4700d22/movies.json"
   },
   "height": 500,
-  "width": 400,
+  "width": 500,
   "padding": {"left": 80, "right": 20, "top": 20, "bottom": 20},
   "params": [
     {
@@ -13,6 +13,15 @@
       "bind": {
         "input": "select",
         "options": ["Drama", "Musical", "Comedy", "Action", "Romantic Comedy", "Western", "Adventure", "Thriller/Suspense", "Documentary", "Black Comedy", "Horror", "Concert/Performance"],
+        "name": "Select a Genre "
+      }
+    },
+    {
+      "name": "ratingFilter",
+      "value": "Rotten Tomatoes Rating",
+      "bind": {
+        "input": "select",
+        "options": ["Rotten Tomatoes Rating", "IMDB Rating"],
         "name": "Select a Genre "
       }
     }
@@ -26,7 +35,7 @@
     },
     {
       "window": [{"op": "rank", "as": "rank"}],
-      "sort": [{"field": "Rotten Tomatoes Rating", "order": "descending"}]
+      "sort": [{"field": "IMDB Rating", "order": "descending"}]
     },
     {
       "filter": {"field": "rank", "lte": 10}
@@ -47,6 +56,27 @@
   "layer": [
     {
       "mark": {
+        "type": "line",
+        "color": "black",
+        "strokeWidth": 2
+      },
+      "encoding": {
+        "x": {
+          "field": "Production Budget",
+          "type": "quantitative"
+        },
+        "x2": {
+          "field": "Worldwide Gross",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "Title",
+          "type": "nominal"
+        }
+      }
+    },
+    {
+      "mark": {
         "type": "point",
         "filled": true
       },
@@ -56,7 +86,7 @@
           "type": "quantitative",
           "title": "Budget"
         },
-        "color": {"value": "#05f505"},
+        "color": {"value": "#f50505"},
         "size": {"value": 40},
         "opacity": {"value": 1}
       }
@@ -71,7 +101,7 @@
           "field": "Worldwide Gross",
           "type": "quantitative"
         },
-        "color": {"value": "#f50505"},
+        "color": {"value": "#05f505"},
         "size": {"value": 40},
         "opacity": {"value": 1}
       }

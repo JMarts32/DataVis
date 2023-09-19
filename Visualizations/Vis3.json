@@ -15,8 +15,8 @@
       }
     }
   ],
-  "width": 600,
-  "height": 300,
+  "width": 700,
+  "height": 500,
   "padding": {"left": 50, "right": 200, "top": 20, "bottom": 50},
   "transform": [
     {
