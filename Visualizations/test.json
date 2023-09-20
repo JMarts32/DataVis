@@ -40,7 +40,7 @@
               "title": "Año de lanzamiento"
             },
             "y": {
-              "aggregate": "sum",
+              "aggregate": "mean",
               "field": "Selected_Rating",
               "type": "quantitative",
               "title": "Promedio de Rating IMDB"
@@ -49,26 +49,6 @@
               "field": "Major Genre",
               "type": "nominal",
               "title": "Género"
-            }
-          }
-        },
-        {
-          "mark": {
-            "type": "line",
-            "interpolate": "monotone"
-          },
-          "encoding": {
-            "x": {
-              "field": "Release Date",
-              "type": "temporal",
-              "timeUnit": "year",
-              "title": "Año de lanzamiento"
-            },
-            "y": {
-              "aggregate": "sum",
-              "field": "Selected_Rating",
-              "type": "quantitative",
-              "title": "Promedio de Rating IMDB"
             }
           }
         }
@@ -81,18 +61,14 @@
           "title": "Año de lanzamiento"
         },
         "y": {
-          "aggregate": "sum",
+          "aggregate": "mean",
           "field": "IMDB Rating",
           "type": "quantitative",
           "title": "Promedio de Rating IMDB",
           "stack": "center",
           "axis": null
         },
-        "color": {
-          "field": "Major Genre",
-          "type": "nominal",
-          "title": "Género"
-        }
+        "color": {"field": "Major Genre", "type": "nominal", "scale": {"scheme": "category20"}}
         
       },
     "width": 600,
