@@ -1,0 +1,101 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+      "url": "https://gist.githubusercontent.com/JMarts32/b6d71d8035237df5f65302d4d2be1c84/raw/ad5a489007c0a1e37a79c96adf21279ea4700d22/movies.json"
+    },
+    "params": [
+        {
+          "name": "height",
+          "value": 400,  
+          "bind": {"input": "range", "min": 200, "max": 800, "step": 10}
+        },
+        {
+          "name": "width",
+          "value": 600,  
+          "bind": {"input": "range", "min": 300, "max": 1200, "step": 10}
+        },
+        {
+            "name": "ratingType",
+            "value": "IMDB Rating",
+            "bind": {"input": "radio", "options": ["IMDB Rating", "Rotten Tomatoes Rating"]}
+          }
+      ],
+      "transform": [
+        {
+          "calculate": "ratingType === 'IMDB Rating' ? datum['IMDB Rating'] : datum['Rotten Tomatoes Rating']",
+          "as": "Selected_Rating"
+        }
+      ],
+      "layer": [
+        {
+          "mark": {
+            "type": "area",
+            "interpolate": "monotone"
+          },
+          "encoding": {
+            "x": {
+              "field": "Release Date",
+              "type": "temporal",
+              "timeUnit": "year",
+              "title": "Año de lanzamiento"
+            },
+            "y": {
+              "aggregate": "sum",
+              "field": "Selected_Rating",
+              "type": "quantitative",
+              "title": "Promedio de Rating IMDB"
+            },
+            "color": {
+              "field": "Major Genre",
+              "type": "nominal",
+              "title": "Género"
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "line",
+            "interpolate": "monotone"
+          },
+          "encoding": {
+            "x": {
+              "field": "Release Date",
+              "type": "temporal",
+              "timeUnit": "year",
+              "title": "Año de lanzamiento"
+            },
+            "y": {
+              "aggregate": "sum",
+              "field": "Selected_Rating",
+              "type": "quantitative",
+              "title": "Promedio de Rating IMDB"
+            }
+          }
+        }
+      ],
+    "encoding": {
+        "x": {
+          "field": "Release Date",
+          "type": "temporal",
+          "timeUnit": "year",
+          "title": "Año de lanzamiento"
+        },
+        "y": {
+          "aggregate": "sum",
+          "field": "IMDB Rating",
+          "type": "quantitative",
+          "title": "Promedio de Rating IMDB",
+          "stack": "center",
+          "axis": null
+        },
+        "color": {
+          "field": "Major Genre",
+          "type": "nominal",
+          "title": "Género"
+        }
+        
+      },
+    "width": 600,
+    "height": 400,
+    "title": "Promedio de Rating (Por tipo) por año y género"
+  }
