@@ -15,9 +15,18 @@
         "options": ["Drama", "Musical", "Comedy", "Action", "Romantic Comedy", "Western", "Adventure", "Thriller/Suspense", "Documentary", "Black Comedy", "Horror", "Concert/Performance"],
         "name": "Select a Genre "
       }
+    },
+    {
+      "name": "ratingType",
+      "value": "IMDB Rating",
+      "bind": {"input": "radio", "options": ["IMDB Rating", "Rotten Tomatoes Rating"], "name": "Select a Rating Type "}
     }
   ],
   "transform": [
+    {
+      "calculate": "ratingType === 'IMDB Rating' ? datum['IMDB Rating'] : datum['Rotten Tomatoes Rating']",
+      "as": "Selected_Rating"
+    },
     {
       "filter": {
         "field": "Major Genre",
@@ -26,7 +35,7 @@
     },
     {
       "window": [{"op": "rank", "as": "rank"}],
-      "sort": [{"field": "Rotten Tomatoes Rating", "order": "descending"}]
+      "sort": [{"field": "Selected_Rating", "order": "descending"}]
     },
     {
       "filter": {"field": "rank", "lte": 10}
@@ -83,7 +92,8 @@
         "color": {
           "field": "pb",
           "type": "nominal",
-          "title": null},
+          "title": null,
+          "scale": {"range": ["#fa0000", "#00fa08"]}},
         "size": {"value": 60},
         "opacity": {"value": 1}
       }
@@ -102,7 +112,8 @@
         "color": {
           "field": "wg",
           "type": "nominal",
-          "title": null},
+          "title": null,
+          "scale": {"range": ["#00fa08", "#fa0000"]}},
         "size": {"value": 60},
         "opacity": {"value": 1}
       }

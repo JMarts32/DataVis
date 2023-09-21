@@ -15,10 +15,10 @@
           "bind": {"input": "range", "min": 300, "max": 1200, "step": 10}
         },
         {
-            "name": "ratingType",
-            "value": "IMDB Rating",
-            "bind": {"input": "radio", "options": ["IMDB Rating", "Rotten Tomatoes Rating"]}
-          }
+          "name": "ratingType",
+          "value": "IMDB Rating",
+          "bind": {"input": "radio", "options": ["IMDB Rating", "Rotten Tomatoes Rating"], "name": "Select a Rating Type "}
+        }
       ],
       "transform": [
         {
