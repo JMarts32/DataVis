@@ -5,6 +5,7 @@
     },
     "height": 500,
     "width": 600,
+    "title": "Promedio de Rating (Por tipo) por Decada y Genero",
     "params": [
       {
         "name": "ratingType",
