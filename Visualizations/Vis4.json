@@ -30,7 +30,9 @@
     },
     {
       "filter": {"field": "rank", "lte": 10}
-    }
+    },
+    {"calculate": "'Rotten Tomatoes Rating'", "as": "rotten"},
+    {"calculate": "'IMDB Rating'", "as": "imdb"}
   ],
   "layer": [
     {
@@ -47,7 +49,10 @@
           "aggregate": "mean",
           "title": "Rotten Tomatoes Rating"
         },
-        "color": {"value": "#cc1f1f"},
+        "color": {
+          "field": "imdb",
+          "type": "nominal",
+          "title": null},
         "opacity": {"value": 0.8},
         "size": {"value": 45}
       }
@@ -65,7 +70,14 @@
           "aggregate": "mean",
           "title": "IMDb Rating"
         },
-        "color": {"value": "#ccc91f"},
+        "color": {
+           "field": "rotten",
+          "type": "nominal",
+          "title": null,
+          "scale": {
+            "range": ["red", "blue"]
+          }
+        },
         "opacity": {"value": 0.8},
         "size": {"value": 25}
       }

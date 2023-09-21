@@ -30,7 +30,9 @@
     },
     {
       "filter": {"field": "rank", "lte": 10}
-    }
+    },
+    {"calculate": "'Worldwide Gross'", "as": "wg"},
+    {"calculate": "'Production Budget'", "as": "pb"}
   ],
   "encoding": {
     "x": {
@@ -78,7 +80,10 @@
           "title": "Budget"
         },
         "tooltip": {"field": "Production Budget", "type": "quantitative"},
-        "color": {"value": "#f50505"},
+        "color": {
+          "field": "pb",
+          "type": "nominal",
+          "title": null},
         "size": {"value": 60},
         "opacity": {"value": 1}
       }
@@ -94,7 +99,10 @@
           "type": "quantitative"
         },
         "tooltip": {"field": "Worldwide Gross", "type": "quantitative"},
-        "color": {"value": "#05f505"},
+        "color": {
+          "field": "wg",
+          "type": "nominal",
+          "title": null},
         "size": {"value": 60},
         "opacity": {"value": 1}
       }
